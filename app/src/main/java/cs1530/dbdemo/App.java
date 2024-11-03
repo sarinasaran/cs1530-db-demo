@@ -6,6 +6,7 @@
  */
 package cs1530.dbdemo;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Properties;
 import java.util.List;
@@ -110,7 +111,7 @@ public class App {
                         double upperPriceBound = scanner.nextDouble();
                         scanner.nextLine();
 
-                        queryResults = coffeeHelper.findCoffeeInPriceRange(lowerPriceBound, upperPriceBound);
+                        queryResults = coffeeHelper.findCoffeeInPriceRange(BigDecimal.valueOf(lowerPriceBound), BigDecimal.valueOf(upperPriceBound));
                         printResultRows(queryResults);
                         break;
                     case 9:

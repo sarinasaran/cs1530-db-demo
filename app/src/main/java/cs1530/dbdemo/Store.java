@@ -1,7 +1,7 @@
 /**
  * A helper class for representing a row in the Store table.
  * The class allows for the transformation of ResultSet to
- * an instance of a Java class with getters/setters
+ * an instance of a Java class with getters
  *
  * @author Brian T. Nixon
  */

@@ -28,8 +28,19 @@ public class ReceiptQueryHelper {
                     "quantity integer," +
                     "CONSTRAINT RECEIPT_STORE_FK FOREIGN KEY (storeNumber) REFERENCES STORE(storeNumber)," +
                     "CONSTRAINT RECEIPT_COFFEE_FK FOREIGN KEY (coffeeID) REFERENCES COFFEE(coffeeID));");
+            // Can execute each update as a single statement
             st.executeUpdate("INSERT INTO RECEIPT VALUES (1, 1, '2024-11-01 10:00:00', 1, 2);");
             st.executeUpdate("INSERT INTO RECEIPT VALUES (2, 1, '2024-11-02 10:15:00', 1, 3);");
+
+            // Or execute multiple updates within a single statement
+            st.executeUpdate("INSERT INTO RECEIPT VALUES (3, 2, '2024-10-28 09:30:40', 2, 1)," +
+                    "(4, 3, '2024-10-29 11:15:00', 3, 3)," +
+                    "(5, 4, '2024-10-28 08:20:15', 4, 2)," +
+                    "(6, 5, '2024-10-29 09:30:40', 5, 2)," +
+                    "(7, 6, '2024-11-02 12:40:00', 6, 5)," +
+                    "(8, 2, '2024-10-21 09:20:20', 7, 1)," +
+                    "(9, 9, '2024-10-19 11:11:11', 9, 3)," +
+                    "(10, 10, '2024-11-03 06:45:00', 10, 4);");
         } catch (SQLException e) {
             handleError(e);
         }

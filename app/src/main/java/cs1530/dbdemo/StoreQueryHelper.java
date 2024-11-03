@@ -39,8 +39,19 @@ public class StoreQueryHelper {
                     "street varchar(50)," +
                     "city varchar(50)," +
                     "state varchar(20));");
+            // Can execute each update as a single statement
             st.executeUpdate("INSERT INTO STORE VALUES (1, 'Test Store', 'sitting', 'Forbes', 'Pittsburgh', 'Pennsylvania');");
             st.executeUpdate("INSERT INTO STORE VALUES (2, 'Test Store2', 'sitting', 'Fifth', 'Pittsburgh', 'Pennsylvania');");
+
+            // Or execute multiple updates within a single statement
+            st.executeUpdate("INSERT INTO STORE VALUES (3, 'Test Store 3', 'drive-through', 'Lincoln', 'Seattle', 'Washington')," +
+                    "(4, 'Test Store 4', 'digital', 'Pike', 'Los Angeles', 'California')," +
+                    "(5, 'Test Store 5', 'digital', 'Park Place', 'Hollywood', 'California')," +
+                    "(6, 'Test Store 6', 'sitting', 'Madison Square', 'New York City', 'New York')," +
+                    "(7, 'Test Store 7', 'digital', 'Washington Ave', 'New York City', 'New York')," +
+                    "(8, 'Test Store 8', 'drive-through', 'Lincoln Place', 'Albany', 'New York')," +
+                    "(9, 'Test Store 9', 'digital', 'Forbes', 'Pittsburgh', 'Pennsylvania')," +
+                    "(10, 'Test Store 10', 'drive-through', 'Boulevard of the Allies', 'Pittsburgh', 'Pennsylvania');");
         } catch (SQLException e) {
             handleError(e);
         }

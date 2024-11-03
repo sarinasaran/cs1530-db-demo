@@ -8,6 +8,7 @@
 
 package cs1530.dbdemo;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,19 @@ public class CoffeeQueryHelper {
                     "name varchar(50)," +
                     "intensity integer," +
                     "price numeric(5,2));");
+            // Can execute each update as a single statement
             st.executeUpdate("INSERT INTO COFFEE VALUES (1, 'Espresso', 10, 1.45);");
-            st.executeUpdate("INSERT INTO COFFEE VALUES (2, 'Latte', 6, 3.65);");
+            st.executeUpdate("INSERT INTO COFFEE VALUES (2, 'Latte', 4, 3.65);");
+
+            // Or execute multiple updates within a single statement
+            st.executeUpdate("INSERT INTO COFFEE VALUES (3, 'Drip Coffee', 8, 1.15)," +
+                    "(4, 'Cappuccino', 5, 2.79)," +
+                    "(5, 'Macchiato', 5, 3.30)," +
+                    "(6, 'Cold Brew', 7, 3.10)," +
+                    "(7, 'Hot Chocolate', 1, 1.59)," +
+                    "(8, 'Americano', 7, 2.05)," +
+                    "(9, 'Mocha', 3, 2.65)," +
+                    "(10, 'Frappuccino', 2, 2.89)");
         } catch (SQLException e) {
             handleError(e);
         }
@@ -106,14 +118,14 @@ public class CoffeeQueryHelper {
      * @param upperBound The upper bound on price
      * @return A list of all Coffees in the H2 database within the price range
      */
-    protected List<RowInterface> findCoffeeInPriceRange(double lowerBound, double upperBound) {
+    protected List<RowInterface> findCoffeeInPriceRange(BigDecimal lowerBound, BigDecimal upperBound) {
         List<RowInterface> coffeeList = new ArrayList<>();
         try (PreparedStatement st = databaseConnection.prepareStatement("SELECT * " +
                 "FROM COFFEE " +
-                "WHERE intensity >= ? AND intensity <= ?")) {
+                "WHERE price >= ? AND price <= ?")) {
             st.setQueryTimeout(QUERY_TIMEOUT);
-            st.setDouble(1, lowerBound);
-            st.setDouble(2, upperBound);
+            st.setBigDecimal(1, lowerBound);
+            st.setBigDecimal(2, upperBound);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Coffee currentCoffee = buildCoffeeFromRow(rs);
