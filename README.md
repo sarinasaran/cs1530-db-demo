@@ -17,7 +17,8 @@ Receipts. You will implement the `findAll`, `findByStoreNumber`, `findByStoreTyp
 
 1) After the lecture on data storage and databases is finished, navigate to the exercise's GitHub repository (the one
    you're currently reading from)
-   and clone the repository locally (this is fine since you're not pushing to the original repository).
+   and fork the repository to create a separate copy for working off of. You can fork a repository in the top-right of
+   this page.
 
    Review the structure of the repository.
 
@@ -118,12 +119,13 @@ installation instructions and acquire the correct `.jar` file if using JDBC.
        vulnerability.
 
 7) The final `TODO` comments are to complete the `findByCityAndState` method of `StoreQueryHelper.java`. For this query,
-   you will need to filter rows on two conditions, the equality of city and the equality of state. You can build off of
+   you will need to filter rows on two conditions, the equality of city and the equality of state. You can build on
    the previous SQL Query by utilizing `AND` to combine conditions in the `WHERE` clause. Similarly, the condition
    supports the use of `OR` and `NOT`. Given this updated query form, complete the `findByCityAndState` by utilizing the
    PreparedStatement and returning the result.
 
-8) The last step is to verify that your code is working correctly using `./gradlew run`.
+8) The last step is to verify that your code is working correctly using `./gradlew run` and to submit your code for the
+   exercise on the Gradescope for the course.
 
 ## Conclusion
 
