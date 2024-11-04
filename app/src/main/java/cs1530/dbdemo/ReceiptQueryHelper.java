@@ -16,6 +16,9 @@ public class ReceiptQueryHelper {
     private static final int QUERY_TIMEOUT = 30;
     private Connection databaseConnection;
 
+    /**
+     * In the table below, note that timestamp is both a date and time.
+     */
     public ReceiptQueryHelper(Connection conn) {
         this.databaseConnection = conn;
         try (Statement st = this.databaseConnection.createStatement()) {
@@ -170,12 +173,10 @@ public class ReceiptQueryHelper {
      */
     protected List<RowInterface> findReceiptInDateRange(Date lowerBound, Date upperBound) {
         List<RowInterface> receiptList = new ArrayList<>();
-        // TODO: Fill-In the SQL statement below to filter for rows between lowerBound and upperBound
-        try (PreparedStatement st = databaseConnection.prepareStatement("FILL IN THIS PART")) {
+        try (PreparedStatement st = databaseConnection.prepareStatement("SELECT * FROM RECEIPT WHERE timeOfPurchase >= ? AND timeOfPurchase <= ?")) {
             st.setQueryTimeout(QUERY_TIMEOUT);
-            // TODO: Given the updated SQL statement, set the lowerBound and upperBound parameters
-
-
+            st.setDate(1, lowerBound);
+            st.setDate(2, upperBound);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Receipt currentReceipt = buildReceiptFromRow(rs);

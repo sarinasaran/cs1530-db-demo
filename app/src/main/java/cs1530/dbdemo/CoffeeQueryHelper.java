@@ -17,6 +17,10 @@ public class CoffeeQueryHelper {
     private static final int QUERY_TIMEOUT = 30;
     private Connection databaseConnection;
 
+    /**
+     * In the table below, note that numeric(5, 2) is a floating point
+     * value with 5 significant digits, of which, 2 appear after the decimal point
+     */
     public CoffeeQueryHelper(Connection conn) {
         this.databaseConnection = conn;
         try (Statement st = this.databaseConnection.createStatement()) {
